@@ -1,0 +1,21 @@
+ipify:
+  host: https://api-ipv6.ip.sb
+
+alidns:
+  regionId: cn-qingdao
+  accessKeyId: ALIDNS_ACCESS_KEY_FILE
+  secret: ALIDNS_SECRET_FILE
+  dns:
+    domain: ALIDNS_DOMAIN
+    subDomains: ALIDNS_SUB_DOMAINS
+    type: ALIDNS_TYPE
+
+server:
+  port: 9000
+management:
+  health:
+    network:
+      enabled: true
+
+logging:
+  config: classpath:log4j2-file.xml

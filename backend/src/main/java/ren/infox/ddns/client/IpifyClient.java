@@ -12,7 +12,7 @@ public class IpifyClient {
     private final IpifyService ipifyService;
     public IpifyClient(@Value("${ipify.host}") String baseUrl) {
         WebClient webClient = WebClient.builder().baseUrl(baseUrl).defaultHeader("user-agent", "Mozilla").build();
-        HttpServiceProxyFactory httpServiceProxyFactory = HttpServiceProxyFactory.builder(WebClientAdapter.forClient(webClient)).build();
+        HttpServiceProxyFactory httpServiceProxyFactory = HttpServiceProxyFactory.builderFor(WebClientAdapter.create(webClient)).build();
         ipifyService = httpServiceProxyFactory.createClient(IpifyService.class);
     }
 

@@ -1,9 +1,9 @@
-FROM gradle:7.6-jdk17 AS builder
+FROM gradle:8.5.0-jdk21 AS builder
 WORKDIR /app
 COPY ./ ./
 RUN gradle clean bootJar
 
-FROM openjdk:17-alpine
+FROM eclipse-temurin:21-alpine
 WORKDIR /app
 COPY --from=builder /app/build/libs/ddns-*.jar /app/ddns.jar
 

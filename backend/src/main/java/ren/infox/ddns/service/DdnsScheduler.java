@@ -8,8 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import ren.infox.ddns.client.IpifyClient;
-import ren.infox.ddns.client.IpifyService;
+import ren.infox.ddns.client.IPFetchClient;
+import ren.infox.ddns.client.IPFetchService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,16 +26,16 @@ public class DdnsScheduler {
     @Value("${alidns.dns.type}")
     private String domainType;
 
-    private final IpifyService ipifyService;
+    private final IPFetchService ipFetchService;
     private final IAcsClient iAcsClient;
 
-    public DdnsScheduler(IpifyClient ipifyClient, IAcsClient iAcsClient) {
-        this.ipifyService = ipifyClient.getIpifyService();
+    public DdnsScheduler(IPFetchClient ipFetchClient, IAcsClient iAcsClient) {
+        this.ipFetchService = ipFetchClient.getIPFetchService();
         this.iAcsClient = iAcsClient;
     }
 
     public void updateDNS() {
-        String currentClientIp = ipifyService.getRemoteIp().ip();
+        String currentClientIp = ipFetchService.getRemoteIp().ip();
         if (StringUtils.isEmpty(currentClientIp)) {
             return;
         }
